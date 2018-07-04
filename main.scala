@@ -6,7 +6,7 @@ object State extends Enumeration {
     val Empty, Mine, Number = Value
 }
 
-class Field (state: State = Empty, value: Int = 0, hidden: Boolean)
+class Field (state: State = Empty, value: Int = 0, hidden: Boolean = true)
 
 class Game (height: Int, width: Int, mines: Int){
     var board = new Array.ofDim[Field](height, width)
