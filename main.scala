@@ -6,7 +6,7 @@ object State extends Enumeration {
     val Empty, Mine, Number = Value
 }
 
-class Field (state: State = Empty, value: Int = 0)
+class Field (state: State = Empty, value: Int = 0, hidden: Boolean)
 
 class Game (height: Int, width: Int, mines: Int){
     var board = new Array.ofDim[Field](height, width)
@@ -35,7 +35,11 @@ class Game (height: Int, width: Int, mines: Int){
     }
 
     def checkField(x: Int, y: Int){
-        board(x)(y) match {
+        if(board(y)(x).hidden = false){
+            println("Pole juz odsloniete")
+
+        }
+        else board(y)(x) match {
             case Empty => handleEmpty(x,y)
             case Bomb => endGame()
             case Number => showNumber(x,y)
