@@ -1,0 +1,1 @@
+class Field (var state: State = Empty, var value: Int = 0, var hidden: Boolean = true)
