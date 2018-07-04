@@ -55,6 +55,32 @@ class Game (height: Int, width: Int, mines: Int){
         }
     }
 
+    def handleEmpty(x: Int, y:Int){
+        board(x)(y).hidden = true
+
+        if(x > 0 && y > 0 && board(x-1)(y-1).state == Empty) handleEmpty(x-1,y-1)
+        if(y > 0 && board(x)(y-1).state == Empty) handleEmmpty(x,y-1)
+        if(y > 0 && x < height-1 && board(x+1)(y-1).state == Empty) handleEmpty(x+1,y-1)
+        if(x > 0 && board(x-1)(y).state == Empty) handleEmpty(x-1,y)
+        if(x < height-1 && board(x+1)(y).state == Empty) handleEmpty(x+1,y)
+        if(y < width-1 && x > 0 && board(x-1)(y+1).state == Empty) handleEmpty(x-1,y+1)
+        if(y > width-1 && board(x)(y+1).state == Empty) handleEmpty(x,y+1)
+        if(y > width-1 && x < height-1 && board(x+1)(y+1).state == Empty) handleEmpty(x+1,y+1)
+
+        if(x > 0 && y > 0 && board(x-1)(y-1).state == Number) showNumber(x-1,y-1)
+        if(y > 0 && board(x)(y-1).state == Number) showNumber(x,y-1)
+        if(y > 0 && x < height-1 && board(x+1)(y-1).state == Number) showNumber(x+1,y-1)
+        if(x > 0 && board(x-1)(y).state == Number) showNumber(x-1,y)
+        if(x < height-1 && board(x+1)(y).state == Number) showNumber(x+1,y)
+        if(y < width-1 && x > 0 && board(x-1)(y+1).state == Number) showNumber(x-1,y+1)
+        if(y > width-1 && board(x)(y+1).state == Number) showNumber(x,y+1)
+        if(y > width-1 && x < height-1 && board(x+1)(y+1).state == Number) showNumber(x+1,y+1)
+    }
+
+    def showNumber(x: Int, y: Int){
+        board(x)(y).hidden = true
+    }
+
     def printBoard(){
         println("   ")
         for(i <- 0 to width-1) println("("+i+") ")
